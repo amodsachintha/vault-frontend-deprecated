@@ -4,10 +4,8 @@ import {Container} from 'semantic-ui-react';
 import { ToastContainer } from 'react-toastify';
 import Login from './pages/Login';
 import About from './pages/About';
+import Home from './pages/Home';
 
-function Index() {
-    return <h2>Home</h2>;
-}
 
 class App extends Component {
   componentDidMount(){
@@ -33,7 +31,7 @@ class App extends Component {
                 </li>
               </ul>
             </nav>
-            <Route path="/" exact component={Index} />
+            <Route path="/" exact component={Home}/>
             <Route path="/about/" component={About} />
             <Route path="/login/" component={Login} />
           </div>
