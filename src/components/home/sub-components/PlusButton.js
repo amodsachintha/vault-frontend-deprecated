@@ -6,9 +6,9 @@ class PlusButton extends React.Component {
     render() {
         return (
             <Button animated='vertical' size='mini' positive>
-                <Button.Content hidden>+</Button.Content>
+                <Button.Content hidden><Icon name='add'/></Button.Content>
                 <Button.Content visible>
-                    <Icon name='shop'/>
+                    <Icon name='add'/>
                 </Button.Content>
             </Button>
         );
