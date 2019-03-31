@@ -9,6 +9,7 @@ import UserProfile from '../components/home/UserProfile';
 import FolderBrowser from '../components/home/FolderBrowser';
 import FileBrowser from '../components/home/FileBrowser';
 import FileStats from "../components/home/FileStats";
+import Dropzone from "../components/home/DropZone"
 
 class Home extends React.Component {
 
@@ -24,7 +25,6 @@ class Home extends React.Component {
         };
 
         this.handleFileClick = this.handleFileClick.bind(this);
-        // this.renderFileStats = this.renderFileStats.bind(this);
     }
 
     handleFileClick(data) {
@@ -55,15 +55,19 @@ class Home extends React.Component {
                         </Grid.Row>
                     </Grid.Column>
 
-                    <Grid.Column width={10}><FileBrowser fileClickHandler={this.handleFileClick}/></Grid.Column>
+                    <Grid.Column width={10}>
+                        <FileBrowser fileClickHandler={this.handleFileClick}/>
+                    </Grid.Column>
 
                     <Grid.Column>
                         <Segment color='green' raised>
                             <Header as='h5'>Swarm Health</Header>
-                            <Progress percent={Math.round(6/7*100)} progress size='medium'>6/7 Peers online</Progress>
+                            <Progress percent={Math.round(6 / 7 * 100)} progress indicating size='medium'>6/7 Peers
+                                online</Progress>
                         </Segment>
                         {this.state.fileIsSelected ? <FileStats data={this.state.file}/> :
                             <Segment raised color='red'>No file selected!</Segment>}
+                            <Dropzone classNames='raised'/>
                     </Grid.Column>
                 </Grid.Row>
 

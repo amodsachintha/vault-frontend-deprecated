@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Card, Grid, Label} from 'semantic-ui-react';
-import PlusButton from './sub-components/PlusButton';
 import FolderList from './sub-components/FolderList'
+import NewFolderModal from './sub-components/NewFolderModal';
 
 class FolderBrowser extends Component {
 
@@ -19,7 +19,7 @@ class FolderBrowser extends Component {
                     </Grid>
                 </Card.Content>
                 <Card.Content extra>
-                    <PlusButton/>
+                    <NewFolderModal />
                 </Card.Content>
             </Card>
         );

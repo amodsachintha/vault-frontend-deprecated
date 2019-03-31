@@ -55,7 +55,6 @@ class FileBrowser extends Component{
 
 
     render(){
-
         return(
             <Segment raised padded>
                 <Label attached='top'>Documents</Label>
