@@ -8,7 +8,7 @@ class UserProfile extends Component {
 
     render() {
         return (
-            <Card>
+            <Card raised>
                 <Card.Content>
                     <Feed>
                         <Feed.Event>

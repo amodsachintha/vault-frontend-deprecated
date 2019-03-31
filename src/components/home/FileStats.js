@@ -1,28 +1,20 @@
 import React, {Component} from 'react';
-import {Card} from "semantic-ui-react";
+import { Segment, Progress, Divider } from "semantic-ui-react";
 
 
-class FileStats extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            filename: props.filename,
-            created_at: props.created_at,
-            file_segments: '',
-            health: ''
-        }
-    }
+class FileStats extends Component {
 
-    render(){
-        return(
-            <Card fluid>
-                <Card.Content>
-
-                </Card.Content>
-            </Card>
+    render() {
+        let {data} = this.props;
+        return (
+            <Segment color='green' raised>
+                <h3>{data.file_name}</h3>
+                <small>Created: {new Date(data.file_created_at.toString()).toDateString()}</small>
+                <Divider clearing/>
+                <Progress percent={data.health} indicating progress>Health</Progress>
+            </Segment>
         )
     }
 }
-
 
 export default FileStats;

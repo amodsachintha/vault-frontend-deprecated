@@ -2,37 +2,49 @@ import React from 'react';
 import {
     Grid,
     Header,
-    Message
+    Progress,
+    Segment
 } from 'semantic-ui-react';
 import UserProfile from '../components/home/UserProfile';
 import FolderBrowser from '../components/home/FolderBrowser';
-import FileBrowser from  '../components/home/FileBrowser';
+import FileBrowser from '../components/home/FileBrowser';
 import FileStats from "../components/home/FileStats";
 
 class Home extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            folderIsSelected: false,
+            file: {
+                file_name: '',
+                file_created_at: ''
+            },
+
+        };
+
+        this.handleFileClick = this.handleFileClick.bind(this);
+        // this.renderFileStats = this.renderFileStats.bind(this);
+    }
+
+    handleFileClick(data) {
+        this.setState({
+            fileIsSelected: true,
+            file: {
+                file_name: data.filename,
+                file_created_at: data.created_at,
+                health: data.health
+            }
+        });
+    }
+
     render() {
         const CardMargin = {
-            marginTop:15
+            marginTop: 15
         };
 
         return (
             <Grid>
-                <Grid.Row columns={4}>
-                    <Grid.Column floated='left'>
-                        <Header as='h1'>Vault</Header>
-                    </Grid.Column>
-
-                    <Grid.Column floated='right'>
-                        <Message>
-                            <Message.Header>Swarm Health</Message.Header>
-                            <p>
-                                6/7 Peers online
-                            </p>
-                        </Message>
-                    </Grid.Column>
-                </Grid.Row>
-
                 <Grid.Row columns='equal'>
                     <Grid.Column>
                         <Grid.Row columns={1}>
@@ -43,9 +55,16 @@ class Home extends React.Component {
                         </Grid.Row>
                     </Grid.Column>
 
-                    <Grid.Column width={10}><FileBrowser/></Grid.Column>
+                    <Grid.Column width={10}><FileBrowser fileClickHandler={this.handleFileClick}/></Grid.Column>
 
-                    <Grid.Column><FileStats /></Grid.Column>
+                    <Grid.Column>
+                        <Segment color='green' raised>
+                            <Header as='h5'>Swarm Health</Header>
+                            <Progress percent={Math.round(6/7*100)} progress size='medium'>6/7 Peers online</Progress>
+                        </Segment>
+                        {this.state.fileIsSelected ? <FileStats data={this.state.file}/> :
+                            <Segment raised color='red'>No file selected!</Segment>}
+                    </Grid.Column>
                 </Grid.Row>
 
 
