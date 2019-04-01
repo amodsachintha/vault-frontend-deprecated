@@ -27,7 +27,7 @@ class NewFolderModal extends Component {
         if(this.state.folderName.trim() === ""){
             this.setState({validName:false});
         }else{
-            toast.success('Folder created successfully!');
+            toast.success(`${this.state.folderName} created successfully!`);
             this.closeModal();
         }
     };
