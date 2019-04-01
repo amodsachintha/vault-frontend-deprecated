@@ -10,6 +10,7 @@ import FolderBrowser from '../components/home/FolderBrowser';
 import FileBrowser from '../components/home/FileBrowser';
 import FileStats from "../components/home/FileStats";
 import Dropzone from "../components/home/DropZone"
+import FolderCollection from "../main/collections/FolderCollection";
 
 class Home extends React.Component {
 
@@ -21,7 +22,6 @@ class Home extends React.Component {
                 file_name: '',
                 file_created_at: ''
             },
-
         };
 
         this.handleFileClick = this.handleFileClick.bind(this);
@@ -67,7 +67,7 @@ class Home extends React.Component {
                         </Segment>
                         {this.state.fileIsSelected ? <FileStats data={this.state.file}/> :
                             <Segment raised color='red'>No file selected!</Segment>}
-                            <Dropzone classNames='raised'/>
+                        <Dropzone classNames='raised'/>
                     </Grid.Column>
                 </Grid.Row>
 
