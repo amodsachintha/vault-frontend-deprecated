@@ -17,14 +17,17 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            folderIsSelected: false,
+            fileIsSelected: false,
             file: {
                 file_name: '',
                 file_created_at: ''
             },
+            currentFolder: undefined,
+            currentFolderHash: undefined
         };
 
         this.handleFileClick = this.handleFileClick.bind(this);
+        this.getFolderOnClick = this.getFolderOnClick.bind(this);
     }
 
     handleFileClick(data) {
@@ -37,6 +40,13 @@ class Home extends React.Component {
             }
         });
     }
+
+    getFolderOnClick(folder){
+        this.setState({
+            currentFolder: folder.foldername,
+            currentFolderHash: folder.hash
+        });
+    };
 
     render() {
         const CardMargin = {
@@ -51,12 +61,24 @@ class Home extends React.Component {
                             <Grid.Column><UserProfile/></Grid.Column>
                         </Grid.Row>
                         <Grid.Row columns={1} style={CardMargin}>
-                            <Grid.Column><FolderBrowser/></Grid.Column>
+                            <Grid.Column>
+                                <FolderBrowser handleFolderClick={this.getFolderOnClick}/>
+                            </Grid.Column>
                         </Grid.Row>
                     </Grid.Column>
 
                     <Grid.Column width={10}>
-                        <FileBrowser fileClickHandler={this.handleFileClick}/>
+                        <FileBrowser
+                            fileClickHandler={this.handleFileClick}
+                            folderHash={
+                                this.state.currentFolderHash === undefined ?
+                                FolderCollection.getInstance().getFirstFolder().hash: this.state.currentFolderHash
+                            }
+                            folderName={
+                                this.state.currentFolder === undefined ?
+                                    FolderCollection.getInstance().getFirstFolder().foldername : this.state.currentFolder
+                            }
+                        />
                     </Grid.Column>
 
                     <Grid.Column>

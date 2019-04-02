@@ -11,20 +11,6 @@ import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 registerPlugin(FilePondFileEncode, FilePondPluginImagePreview, FilePondFileSizeValidation);
 
 export default class DropZone extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            // Set initial files, type 'local' means this is a file
-            // that has already been uploaded to the server (see docs)
-            files: [{
-                source: 'index.html',
-                options: {
-                    type: 'local'
-                }
-            }]
-        };
-    }
 
     handleInit() {
         console.log('FilePond instance has initialised', this.pond);
@@ -36,7 +22,6 @@ export default class DropZone extends Component {
 
                 {/* Pass FilePond properties as attributes */}
                 <FilePond ref={ref => this.pond = ref}
-                          files={this.state.files}
                           allowMultiple={false}
                           maxFiles={1}
                           instantUpload={false}

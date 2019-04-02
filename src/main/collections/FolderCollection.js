@@ -40,4 +40,8 @@ export default class FolderCollection {
     getFolderCount() {
         return this.collection.length;
     };
+
+    getFirstFolder(){
+        return this.getAllFoldersSortedByName()[0];
+    }
 }

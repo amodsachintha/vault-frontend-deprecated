@@ -16,7 +16,8 @@ class FolderBrowser extends Component {
         if (window.confirm('Are you sure?')) {
             let folder = FolderCollection.getInstance().removeFolderByHash(folderHash);
             this.forceUpdate();
-            toast.success(`${folder.getName()} deleted succesfully!`);
+            toast.success(`${folder.getName()} deleted successfully!`);
+            window.location = window.location;
         }
     };
 
@@ -31,6 +32,7 @@ class FolderBrowser extends Component {
                                 <FolderList
                                     folders={FolderCollection.getInstance().getAllFoldersSortedByName()}
                                     handleDeleteFolder={this.handleDeleteFolder}
+                                    handleFolderClick={this.props.handleFolderClick}
                                 />
                             </Grid.Column>
                         </Grid.Row>
