@@ -36,7 +36,7 @@ class Home extends React.Component {
             file: {
                 file_name: data.filename,
                 file_created_at: data.created_at,
-                health: data.health
+                health: Math.round(data.a_fragements/data.t_fragments / 100)
             }
         });
     }
